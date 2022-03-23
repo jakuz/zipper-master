@@ -15,6 +15,7 @@ gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem "haml-rails", '~> 2.0'
 gem 'simple_form'
+gem 'rubyzip', '~> 2.3.0', require: 'zip'
 
 group :development, :test do
   gem 'byebug'
