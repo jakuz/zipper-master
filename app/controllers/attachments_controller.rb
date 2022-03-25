@@ -26,8 +26,9 @@ class AttachmentsController < ApplicationController
 
   def flash_decryption_password
     filename = params[:attachment][:file].original_filename
-    flash[:notice] = "Plik '#{filename}' został pomyślnie załadowany \
-      i zaszyfrowany hasłem: #{params[:password]}"
+    flash[:notice] = "Pomyślnie załadowano plik(i). \
+      Hasło do utworzonego załącznika '#{filename}', \
+      to: #{params[:password]}"
   end
 
   def flash_upload_error
