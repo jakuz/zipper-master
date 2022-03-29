@@ -4,13 +4,14 @@ class AttachmentsController < ApplicationController
   end
 
   def create
-    Attachments::Create.new(params_with_password).call
-    flash_decryption_password
-    redirect_to root_path
-  rescue ActiveRecord::RecordInvalid => invalid
-    @attachment = invalid.record
-    flash_upload_error
-    render :new
+    if @create_resp = Attachments::Create.new(attachment_params).call
+      flash_decryption_password
+      redirect_to root_path
+    else
+      flash_upload_error
+      @attachment = Attachment.new
+      render :new
+    end 
   end
 
   def index
@@ -19,16 +20,14 @@ class AttachmentsController < ApplicationController
 
   private
 
-  def params_with_password
-    params[:password] = SecureRandom.hex(16)
-    params
+  def attachment_params
+    params.require(:attachment).permit(files: [])
   end
 
   def flash_decryption_password
-    filename = params[:attachment][:file].original_filename
     flash[:notice] = "Pomyślnie załadowano plik(i). \
-      Hasło do utworzonego załącznika '#{filename}', \
-      to: #{params[:password]}"
+      Hasło do utworzonego załącznika '#{@create_resp[:zip_filename]}', \
+      to: #{@create_resp[:zip_password]}"
   end
 
   def flash_upload_error
