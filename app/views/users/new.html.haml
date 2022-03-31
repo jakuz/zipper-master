@@ -1,0 +1,6 @@
+= simple_form_for @user do |f|
+  = f.input :name, label: "Nazwa użytkownika"
+  = f.input :email, label: "Email", required: true
+  = f.input :password, label: "Hasło", required: true
+  = f.input :password_confirmation, label: "Powtórz hasło", required: true
+  = f.button :submit, "Załóż konto", class: "btn-primary"

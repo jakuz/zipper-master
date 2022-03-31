@@ -1,10 +1,13 @@
 class AttachmentsController < ApplicationController
+
+  before_action :authorize
+
   def new
     @attachment = Attachment.new
   end
 
   def create
-    if @create_resp = Attachments::Create.new(attachment_params).call
+    if @create_resp = Attachments::Create.new(attachment_params, current_user).call
       flash_decryption_password
       redirect_to root_path
     else
@@ -15,7 +18,7 @@ class AttachmentsController < ApplicationController
   end
 
   def index
-    @attachments = Attachment.all
+    @attachments = Attachment.all.where({ user_id: current_user.id })
   end
 
   private

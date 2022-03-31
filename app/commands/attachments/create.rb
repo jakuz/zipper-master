@@ -1,6 +1,7 @@
 class Attachments::Create
-  def initialize(params)
-    @params = params
+  def initialize(attachment_params, current_user)
+    @params = attachment_params
+    @user = current_user
     @logger = Rails.logger
   end
  
@@ -71,7 +72,7 @@ class Attachments::Create
   end
 
   def save_attachment_in_db
-    Attachment.new({ file: @zip_file }).save!
+    Attachment.new({ file: @zip_file, user_id: @user ? @user.id : nil }).save!
   rescue ActiveRecord::RecordInvalid => invalid
     @logger.error "Error while saving attachment: #{invalid.message}"
     @logger.debug "Record: #{invalid.record.inspect}"
