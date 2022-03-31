@@ -12,3 +12,5 @@
         %td= attachment.file.filename
         %td= attachment.file.byte_size
         %td= link_to 'Pobierz', attachment.file
+
+= paginate @attachments, window: 2

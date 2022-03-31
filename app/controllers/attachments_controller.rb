@@ -18,7 +18,8 @@ class AttachmentsController < ApplicationController
   end
 
   def index
-    @attachments = Attachment.all.where({ user_id: current_user.id })
+    @attachments = Attachment.all.where({ user_id: current_user.id }).
+      order(created_at: :desc).page params[:page]
   end
 
   private

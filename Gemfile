@@ -16,6 +16,7 @@ gem 'turbolinks', '~> 5'
 gem "haml-rails", '~> 2.0'
 gem 'simple_form'
 gem 'rubyzip', '~> 2.3.0', require: 'zip'
+gem 'kaminari', '~> 1.2.2'
 
 group :development, :test do
   gem 'byebug'
