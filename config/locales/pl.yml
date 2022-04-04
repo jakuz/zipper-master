@@ -29,3 +29,24 @@ pl:
           kb: KB
           mb: MB
           tb: TB
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'Znaleziono błędy: %{errors}'
+        restrict_dependent_destroy:
+          has_one: Nie można usunąć, gdyż istnieje zależny od niego %{record}
+          has_many: Nie można usunąć, gdyż istnieją zależne od niego %{record}
+      models:
+          user:
+            attributes:
+              email:
+                invalid: Niepoprawny email
+                blank: Pole email jest puste
+                taken: Podany email już istnieje w bazie danych
+              password:
+                invalid: Niepoprawne hasło
+                blank: Pole hasło jest puste
+          attachment:
+            attributes:
+              user:
+                required: Nie wskazano użytkownika, lub użytkownik nie istnieje

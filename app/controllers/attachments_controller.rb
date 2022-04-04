@@ -8,7 +8,9 @@ class AttachmentsController < ApplicationController
   end
 
   def create
-    if @create_resp = Attachments::Create.new(attachment_params, current_user).call
+    @create_resp = AttachmentsCommands::Create.new(attachment_params, current_user).call
+
+    unless @create_resp.is_a? Exception
       flash_decryption_password
       redirect_to root_path
     else
@@ -47,8 +49,8 @@ class AttachmentsController < ApplicationController
 
   def flash_decryption_password
     flash[:notice] = "Pomyślnie załadowano plik(i). \
-      Hasło do utworzonego załącznika '#{@create_resp[:zip_filename]}', \
-      to: #{@create_resp[:zip_password]}"
+      Hasło do utworzonego załącznika '#{@create_resp[:filename]}', \
+      to: #{@create_resp[:file_password]}"
   end
 
   def flash_upload_error

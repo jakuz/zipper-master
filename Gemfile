@@ -17,6 +17,9 @@ gem "haml-rails", '~> 2.0'
 gem 'simple_form'
 gem 'rubyzip', '~> 2.3.0', require: 'zip'
 gem 'kaminari', '~> 1.2.2'
+gem 'grape', '~> 1.6.0'
+gem 'grape_on_rails_routes'
+gem 'rack-cors'
 
 group :development, :test do
   gem 'byebug'

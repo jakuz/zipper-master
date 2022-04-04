@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root to: 'attachments#index'
+  mount API::Base, at: "/"
 
   resources :attachments, only: [:new, :create]
   resources :users, only: [:new, :create]

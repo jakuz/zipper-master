@@ -1,5 +1,10 @@
 class ApplicationController < ActionController::Base
 
+  before_action do
+    ActiveStorage::Current.host = 'http://localhost:3000' \
+      if ActiveStorage::Current.host.blank?
+  end
+
   helper_method :current_user
   
   def current_user
