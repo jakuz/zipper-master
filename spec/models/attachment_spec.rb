@@ -1,5 +1,10 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Attachment, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  context "relations" do
+    it "belongs_to user" do
+      expect(Attachment.reflect_on_association(:user).macro).to match(:belongs_to)
+    end
+  end
 end
