@@ -1,0 +1,52 @@
+pl:
+  views:
+    pagination:
+      first: "&laquo; Pierwsza"
+      last: "Ostatnia &raquo;"
+      previous: "&lsaquo; Poprzednia strona"
+      next: "Następna strona &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "Nie znaleziono %{entry_name}"
+          one: "Wyświetla <b>1</b> %{entry_name}"
+          other: "Wyświetla <b>all %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Wyświetla %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> z <b>%{total}</b>"
+  number:
+    human:
+      storage_units:
+        format: "%n %u"
+        units:
+          byte:
+            one: B
+            few: B
+            many: B
+            other: B
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+  activerecord:
+    errors:
+      messages:
+        record_invalid: 'Znaleziono błędy: %{errors}'
+        restrict_dependent_destroy:
+          has_one: Nie można usunąć, gdyż istnieje zależny od niego %{record}
+          has_many: Nie można usunąć, gdyż istnieją zależne od niego %{record}
+      models:
+          user:
+            attributes:
+              email:
+                invalid: Niepoprawny email
+                blank: Pole email jest puste
+                taken: Podany email już istnieje w bazie danych
+              password:
+                invalid: Niepoprawne hasło
+                blank: Pole hasło jest puste
+          attachment:
+            attributes:
+              user:
+                required: Nie wskazano użytkownika, lub użytkownik nie istnieje

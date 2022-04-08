@@ -1,8 +1,21 @@
 %header.d-flex.flex-wrap.justify-content-center.py-3.mb-4.border-bottom
   = link_to root_path, class: "d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none" do
-    %span.fs-4 Zipper
+    %span.fs-4
+      - if current_user
+        = "Zipper - zalogowano jako "
+        %strong= "#{current_user.name} (#{current_user.email})"
+      - else
+        = "Zipper"
+
   %ul.nav.nav-pills
     %li.nav-item
       = link_to 'Lista plików', root_path, class: ['nav-link', ('active' if current_page?(root_path))]
     %li.nav-item
-      = link_to 'Dodaj plik', new_attachment_path, class: ['nav-link', ('active' if current_page?(new_attachment_path))]
+      = link_to 'Dodaj plik(i)', new_attachment_path, class: ['nav-link', ('active' if current_page?(new_attachment_path))]
+    
+    - if current_user
+      %li.nav-item= link_to 'Wyloguj', logout_path, method: :delete, class: 'nav-link'
+    - else
+      %li.nav-item= link_to 'Zaloguj', login_path, class: 'nav-link'
+      %li.nav-item{class: "navbar-text"}= " lub "
+      %li.nav-item= link_to 'Zarejestruj', new_user_path, class: 'nav-link'

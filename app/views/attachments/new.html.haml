@@ -1,3 +1,5 @@
 = simple_form_for @attachment do |f|
-  = f.input :file
-  = f.button :submit, class: "btn-primary"
+  = f.input :file, input_html: { multiple: "true", name: "attachment[files][]" },
+    label: "Pliki do zaimportowania",
+    hint: "Po zaimportowaniu, pliki zostaną skompresowane do jednego pliku .zip i zaszyfrowane hasłem."
+  = f.button :submit, "Wyślij", class: "btn-primary"
